@@ -20,8 +20,9 @@ public class Category {
 
     private boolean visible= true;
 
-    public Category (String categoryName){
+    public Category (String categoryName, User author){
         this.categoryName= categoryName;
+        this.user= author;
     }
 
     @ManyToOne (fetch = FetchType.LAZY)

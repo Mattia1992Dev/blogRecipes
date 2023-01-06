@@ -82,6 +82,7 @@ public class UserPrincipal implements UserDetails {
         return authorities;
     }
 
+
     
     @JsonIgnore
     @Override

@@ -1,6 +1,9 @@
 package com.recipe.blogRecipes.controller;
 
 import com.recipe.blogRecipes.entity.Category;
+import com.recipe.blogRecipes.entity.User;
+import com.recipe.blogRecipes.security.CurrentUser;
+import com.recipe.blogRecipes.security.UserPrincipal;
 import com.recipe.blogRecipes.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,18 +27,33 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    /*@PutMapping({"/{category}"})
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_WRITER') or hasRole('ROLE_GUEST')")
-    public ResponseEntity<?> salvaCategoria(@PathVariable @NotBlank @Size(max =20, min=3) String category){
+    @PutMapping("/{category}")
+    public ResponseEntity<?> save(@PathVariable @NotBlank @Size(max = 50, min = 2) String category, @CurrentUser UserPrincipal userPrincipal) {
+        //verificare he non esiste gia la categoria che andremmo ad'inserire
+        if ((categoryService.getUserAuthoritySQL(userPrincipal.getId())==1)||(userPrincipal.getId()==2)){
+            Optional<Category> cat = categoryService.findById(category);
+            if (cat.isPresent())
+                return new ResponseEntity<String>("Category already present", HttpStatus.BAD_REQUEST);
+            //se non esiste, persisterla sul db
+            Category c = new Category(
+                    category,
+                    new User(userPrincipal.getId())
+            );
+            categoryService.save(c);
 
-        Optional<Category> categoria = categoryService.findById(category);
-        if (categoria.isPresent())
-            return new ResponseEntity<String>("Category already present", HttpStatus.BAD_REQUEST);
-        Category saveCategory = new Category(category);
-        categoryService.save(saveCategory);
+            return new ResponseEntity<String>("New Category " + category + " added", HttpStatus.CREATED);
+        }
 
-        return new ResponseEntity<String>("New Category " + category + " added", HttpStatus.CREATED);
+        else {
+            return new ResponseEntity<String>("User not autorizated", HttpStatus.FORBIDDEN);
+        }
 
+    }
+
+    /*@PutMapping("/{category}")
+    @PreAuthorize("hasRole('ROLE_GUEST')")
+    public ResponseEntity<?> save(@PathVariable @NotBlank @Size(max = 50, min = 2) String category){
+        return new ResponseEntity<String>("User not autorizated" , HttpStatus.FORBIDDEN);
     }*/
 
 

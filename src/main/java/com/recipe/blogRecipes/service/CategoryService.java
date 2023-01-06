@@ -10,12 +10,16 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    @Autowired CategoryRepository categoryRepository; //istanzio l'oggetto già disponibile
 
     public Optional<Category> findById (String category){
         return categoryRepository.findById(category);
     }
 
-    public void save(Category saveCategory){categoryRepository.save(saveCategory);}
+    public void save(Category cat){
+        categoryRepository.save(cat);}
+
+    public long getUserAuthoritySQL(long user_id){
+        return categoryRepository.getUserAuthoritySQL(user_id);
+    }
 }
