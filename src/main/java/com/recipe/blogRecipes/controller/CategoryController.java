@@ -70,7 +70,7 @@ public class CategoryController {
     public ResponseEntity<?> ottieniCategorieVisibili(){
 
         List<String> categories = categoryService.findByVisibleTrue();
-        return new ResponseEntity<>(categories,HttpStatus.OK);
+        return new ResponseEntity<>(categories,HttpStatus.OK);//
     }
 
 

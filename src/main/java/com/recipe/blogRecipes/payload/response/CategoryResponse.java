@@ -12,6 +12,6 @@ public class CategoryResponse {
 
     @Override
     public String toString() {
-        return "nome categoria: " + categoryname;
+        return "nome categoria: " + categoryname;//
     }
 }

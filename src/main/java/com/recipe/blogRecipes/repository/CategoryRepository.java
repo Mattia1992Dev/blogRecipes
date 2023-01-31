@@ -22,5 +22,5 @@ public interface CategoryRepository  extends JpaRepository<Category, String> {
             ")FROM Category c " + // ricordati di lasciare spazio senò viene scritto cWHERE tutto attaccato
             "WHERE c.visible=true")
 
-    List<String> getCategoryByVisibleTrue();
+    List<String> getCategoryByVisibleTrue();//
 }
