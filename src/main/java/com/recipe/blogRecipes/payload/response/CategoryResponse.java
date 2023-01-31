@@ -9,5 +9,9 @@ import lombok.Setter;
 public class CategoryResponse {
 
     private String categoryname; // per distinguere da entità
-    private boolean visible;
+
+    @Override
+    public String toString() {
+        return "nome categoria: " + categoryname;
+    }
 }
