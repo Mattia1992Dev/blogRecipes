@@ -23,4 +23,12 @@ public interface CategoryRepository  extends JpaRepository<Category, String> {
             "WHERE c.visible=true")
 
     List<String> getCategoryByVisibleTrue();//
+
+    @Query(value = "SELECT new com.recipe.blogRecipes.payload.response.CategoryResponse(" +     //è tutto il package della classe generata e mi serve il costruttore
+            "c.categoryName" +
+            ")FROM Category c ") // ricordati di lasciare spazio senò viene scritto cWHERE tutto attaccato
+    List<String> getCategoryByVisibleTrueAndFalse();
+
+
+
 }

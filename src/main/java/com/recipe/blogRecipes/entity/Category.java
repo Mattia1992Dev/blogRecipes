@@ -25,6 +25,10 @@ public class Category {
         this.user= author;
     }
 
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name="author", nullable = false)
     private User user;

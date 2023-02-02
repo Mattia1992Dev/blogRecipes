@@ -27,5 +27,13 @@ public class CategoryService {
 
     public long getUserAuthoritySQL(long user_id){
         return categoryRepository.getUserAuthoritySQL(user_id);
-    }//
+    }
+
+
+    public List<String> getCategoryByVisibleTrueAndFalse (){
+        return categoryRepository.getCategoryByVisibleTrueAndFalse();
+    }
+
+
+
 }

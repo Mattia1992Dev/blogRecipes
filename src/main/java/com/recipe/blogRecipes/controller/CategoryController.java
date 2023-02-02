@@ -73,5 +73,14 @@ public class CategoryController {
         return new ResponseEntity<>(categories,HttpStatus.OK);//
     }
 
+    @GetMapping()
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> getAllCategories(){
+
+        List<String> categories = categoryService.getCategoryByVisibleTrueAndFalse(); // Se non trova nulla mi ritorna un oggetto vuoto. SELECT ALL FROM category
+        return new ResponseEntity<>(categories,HttpStatus.OK);
+    }
+
+
 
 }

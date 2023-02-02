@@ -22,6 +22,8 @@ public class Rating extends CreationUpdate {
 
     private boolean visible=true;
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

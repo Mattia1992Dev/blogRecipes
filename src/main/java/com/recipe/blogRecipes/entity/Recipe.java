@@ -44,6 +44,9 @@ public class Recipe extends CreationUpdate{
     List<Comment> comments = new ArrayList<>();
 
 
+    public Recipe(long id) {
+        this.id = id;
+    }
 
     public Recipe(String title, String ingredients, String content, User author) {
         this.title = title;

@@ -38,8 +38,11 @@ public class User extends CreationUpdate {
         this.authorities = authorities;
     }
 
+    public User(String username) {
+        this.username = username;
+    }
 
-    public User(long id, String username,Set<Authority> authorities) {
+    public User(long id, String username, Set<Authority> authorities) {
         this.id = id;
         this.username = username;
         this.authorities = authorities;

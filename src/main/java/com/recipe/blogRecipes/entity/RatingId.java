@@ -1,13 +1,16 @@
 package com.recipe.blogRecipes.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable
+@Embeddable @NoArgsConstructor @AllArgsConstructor
 public class RatingId implements Serializable {
 
     @ManyToOne
@@ -17,6 +20,9 @@ public class RatingId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "recipe_id", nullable = false)
     private Recipe recipe;
+
+
+
 
     @Override
     public boolean equals(Object o) {
